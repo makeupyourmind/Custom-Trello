@@ -1,4 +1,4 @@
-const User = require('../db/sequelize');
+const {User} = require('../db/sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -42,7 +42,8 @@ class UserController{
             }
             let response = await User.update(req.body,
             {
-                where: {id: req.params.id}
+                where: {id: req.params.id},
+                returning: true
             })
             res.send(response)
          }
@@ -58,7 +59,8 @@ class UserController{
             }
             let response = await User.update(req.body,
             {
-                where: {id: req.params.id}
+                where: {id: req.params.id},
+                returning: true
             })
             res.send(response)
          }
@@ -74,25 +76,11 @@ class UserController{
             return user.destroy()
         })
         .then(result => {
-            res.send(result)
+            res.status(200).send("okay")
         })
         .catch(e => {
             res.status(400).send('user not exist')
         })
-          
-        // console.log(req.params.id)
-        // try{
-        //     let response = await User.destroy({
-        //         where: {
-        //             id: req.params.id
-        //         },
-        //         truncate: true
-        //     })
-        //     res.sendStatus(200).send(response)
-        //  }
-        //  catch(e){
-        //      res.status(400).send(e.message)
-        //  }
     }
 
 }

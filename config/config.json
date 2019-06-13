@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
+    "username": "postgres",
+    "password": "AZ69295",
     "database": "testdb",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": false
   },
   "test": {
-    "username": "root",
-    "password": "root",
+    "username": "postgres",
+    "password": "AZ69295",
     "database": "testdb",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "operatorsAliases": false
   },
   "production": {
-    "username": "root",
-    "password": "root",
+    "username": "postgres",
+    "password": "AZ69295",
     "database": "testdb",
     "host": "127.0.0.1",
     "dialect": "postgres",
