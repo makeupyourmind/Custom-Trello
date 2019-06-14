@@ -1,4 +1,5 @@
 const {Cards} = require('../db/sequelize')
+const confirmUser = require('../middleware/confirm-user.middleware')
 
 class CardsController{
 
@@ -34,6 +35,7 @@ class CardsController{
     
     async updateSomething(req, res){
         try {
+            await confirmUser(req,res)
             let response = await Cards.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -47,6 +49,7 @@ class CardsController{
 
     async updateAll(req, res){
         try {
+            await confirmUser(req,res)
             let response = await Cards.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -59,17 +62,25 @@ class CardsController{
     }
 
     async delete(req, res){
-        Cards
-        .findByPk(req.params.id)
-        .then(user => {
-            return user.destroy()
-        })
-        .then(result => {
+        try {
+            await confirmUser(req,res)
+            let response = await Cards.findByPk(req.params.id)
+            await response.destroy()
             res.status(200).send("okay")
-        })
-        .catch(e => {
-            res.status(400).send('user not exist')
-        })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+        // Cards
+        // .findByPk(req.params.id)
+        // .then(user => {
+        //     return user.destroy()
+        // })
+        // .then(result => {
+        //     res.status(200).send("okay")
+        // })
+        // .catch(e => {
+        //     res.status(400).send('user not exist')
+        // })
     }
 }
 

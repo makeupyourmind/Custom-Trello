@@ -1,8 +1,44 @@
 const {User} = require('../db/sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const UserHelper = require('../heplers/user.helper')
+const confirmUser = require('../middleware/confirm-user.middleware')
 
 class UserController{
+
+    // async test(req, res){
+
+    //     try {
+    //         await confirmUser(req,res)
+    //         console.log(req.body)
+    //         res.send("You CAN DO IT")
+    //     } catch (error) {
+    //         res.status(400).send(error.message)
+    //     }
+
+    //     // try {
+    //     //     jwt.verify(req.token, 'secretkey', (err, authData) => {
+    //     //              if(err){
+    //     //             console.log("err : ", err);
+    //     //              res.sendStatus(401);
+    //     //             }
+    //     //             else {
+    //     //                 if(authData.user.id == req.params.id){
+    //     //                     res.send("okay")
+    //     //                 }
+    //     //                 else{
+    //     //                     res.status(400).send('You cant do it')
+    //     //                 }
+    //     //             // res.json({
+    //     //             //     authData
+    //     //             // });
+    //     //             }
+    //     //         });
+    //     // } catch (error) {
+    //     //     res.status(400).send(e.message)
+    //     // }
+
+    // }
 
     async signUp(req, res){
         try{
@@ -12,6 +48,22 @@ class UserController{
         }
         catch(e){
             res.status(400).send(e.message)
+        }
+    }
+
+    async signIn(req, res){
+        try {
+            let response = await UserHelper.login(req, res);
+            if(response){
+                const user = response;
+                jwt.sign({user}, 'secretkey',  { expiresIn: '3600s'} , (err,token) => {
+                    res.json({
+                        token           
+                    });              
+                });
+            }
+        } catch (error) {
+            res.status(400).send(error.message)
         }
     }
 
@@ -37,6 +89,7 @@ class UserController{
 
     async updateByParam(req, res){
         try{
+            await confirmUser(req,res)
             if(req.body.password != undefined){
                 req.body.password = bcrypt.hashSync(req.body.password, 10);
             }
@@ -54,6 +107,7 @@ class UserController{
 
     async updateAll(req, res){
         try{
+            await confirmUser(req,res)
             if(req.body.password != undefined){
                 req.body.password = bcrypt.hashSync(req.body.password, 10);
             }
@@ -70,17 +124,15 @@ class UserController{
     }
 
     async delete(req, res){
-        User.
-        findByPk(req.params.id)
-        .then(user => {
-            return user.destroy()
-        })
-        .then(result => {
+
+        try {
+            await confirmUser(req,res)
+            let response = await User.findByPk(req.params.id)
+            await response.destroy()
             res.status(200).send("okay")
-        })
-        .catch(e => {
-            res.status(400).send('user not exist')
-        })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
     }
 
 }

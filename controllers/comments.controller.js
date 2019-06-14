@@ -1,4 +1,5 @@
 const {Comments} = require('../db/sequelize')
+const confirmUser = require('../middleware/confirm-user.middleware')
 
 class CommentsController{
     async create(req, res){
@@ -33,6 +34,7 @@ class CommentsController{
     
     async updateSomething(req, res){
         try {
+            await confirmUser(req,res)
             let response = await Comments.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -46,6 +48,7 @@ class CommentsController{
 
     async updateAll(req, res){
         try {
+            await confirmUser(req,res)
             let response = await Comments.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -58,17 +61,25 @@ class CommentsController{
     }
 
     async delete(req, res){
-        Comments
-        .findByPk(req.params.id)
-        .then(user => {
-            return user.destroy()
-        })
-        .then(result => {
+        try {
+            await confirmUser(req,res)
+            let response = await Comments.findByPk(req.params.id)
+            await response.destroy()
             res.status(200).send("okay")
-        })
-        .catch(e => {
-            res.status(400).send('user not exist')
-        })
+        } catch (error) {
+            res.status(400).send(error.message)
+        }
+        // Comments
+        // .findByPk(req.params.id)
+        // .then(user => {
+        //     return user.destroy()
+        // })
+        // .then(result => {
+        //     res.status(200).send("okay")
+        // })
+        // .catch(e => {
+        //     res.status(400).send('user not exist')
+        // })
     }
 }
 
