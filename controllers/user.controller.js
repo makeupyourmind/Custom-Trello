@@ -6,40 +6,6 @@ const confirmUser = require('../middleware/confirm-user.middleware')
 
 class UserController{
 
-    async test(req, res){
-
-        try {
-            //await confirmUser(req,res)
-            console.log(req.body)
-            res.send(req.body)
-        } catch (error) {
-            res.status(400).send(error.message)
-        }
-
-        // try {
-        //     jwt.verify(req.token, 'secretkey', (err, authData) => {
-        //              if(err){
-        //             console.log("err : ", err);
-        //              res.sendStatus(401);
-        //             }
-        //             else {
-        //                 if(authData.user.id == req.params.id){
-        //                     res.send("okay")
-        //                 }
-        //                 else{
-        //                     res.status(400).send('You cant do it')
-        //                 }
-        //             // res.json({
-        //             //     authData
-        //             // });
-        //             }
-        //         });
-        // } catch (error) {
-        //     res.status(400).send(e.message)
-        // }
-
-    }
-
     async signUp(req, res){
         try{
            req.body.password = bcrypt.hashSync(req.body.password, 10);

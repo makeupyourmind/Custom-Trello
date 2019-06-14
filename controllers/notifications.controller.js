@@ -4,7 +4,7 @@ class NotificationsController{
     
     async create(req, res){
         try {
-            let resposne = await Columns.create(req.body);
+            let resposne = await Notifications.create(req.body);
 
             res.send(resposne)
         } catch (error) {
@@ -14,7 +14,7 @@ class NotificationsController{
 
     async getAll(req, res){
         try {
-            let resposne = await Columns.findAll();
+            let resposne = await Notifications.findAll();
 
             res.send(resposne)
         } catch (error) {
@@ -24,7 +24,7 @@ class NotificationsController{
 
     async getById(req, res){
         try{
-           let response = await Columns.findByPk(req.params.id)
+           let response = await Notifications.findByPk(req.params.id)
            res.send(response)
         }
         catch(e){
@@ -35,7 +35,7 @@ class NotificationsController{
     async updateSomething(req, res){
         try {
             //await confirmUser(req,res)
-            let response = await Columns.update(req.body,
+            let response = await Notifications.update(req.body,
                 {
                     where: {id: req.params.id},
                     returning: true
@@ -49,7 +49,7 @@ class NotificationsController{
     async updateAll(req, res){
         try {
             //await confirmUser(req,res)
-            let response = await Columns.update(req.body,
+            let response = await Notifications.update(req.body,
                 {
                     where: {id: req.params.id},
                     returning: true
@@ -62,24 +62,12 @@ class NotificationsController{
 
     async delete(req, res){
         try {
-            //await confirmUser(req,res)
-            let response = await Columns.findByPk(req.params.id)
+            let response = await Notifications.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")
         } catch (error) {
             res.status(400).send(error.message)
         }
-        // Columns
-        // .findByPk(req.params.id)
-        // .then(user => {
-        //     return user.destroy()
-        // })
-        // .then(result => {
-        //     res.status(200).send("okay")
-        // })
-        // .catch(e => {
-        //     res.status(400).send('user not exist')
-        // })
     }
 }
 

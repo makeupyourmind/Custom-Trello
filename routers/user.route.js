@@ -8,7 +8,7 @@ router.route('/').post(UserController.signUp)
 
 router.route('/signIn').post(UserController.signIn)
 
-router.route('/test/:id').post(auth,confirmUser, UserController.test)
+// router.route('/test/:id').post(auth,confirmUser, UserController.test)
 
 router.route('/').get(UserController.all)
 
