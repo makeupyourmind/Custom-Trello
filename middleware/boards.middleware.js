@@ -16,9 +16,10 @@ module.exports = async function(req, res,next){
                         },
                         attributes: ['id']
                     })
-                    console.log("response.id : ",response.id)
-                    console.log("authorId: ", authData.user.id)
-                    console.log(response.id == req.params.id)
+                    // console.log("response : ",response.id)
+                    // console.log("authData.user.id: ", authData.user.id)
+                    // console.log("req.params.id: ", req.params.id)
+                    // console.log(response.id == req.params.id)
                     if(response.id == req.params.id){
                         next()
                         // console.log("okay")
