@@ -20,6 +20,6 @@ app.use('/boards', boardsRoute);
 app.use('/columns', columnsRoute);
 app.use('/cards', cardsRoute);
 app.use('/comments', commentsRoute);
-app.use('/notifications', commentsRoute);
+app.use('/notifications', notificationsRoute);
 
 app.listen(3000, () => console.log("App listening on PORT 3000"))
