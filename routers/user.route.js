@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 const UserController = require('../controllers/user.controller')
 const auth = require('../middleware/token.middleware');
+const confirmUser = require('../middleware/boards.middleware')
 
 router.route('/').post(UserController.signUp)
 
@@ -13,10 +14,10 @@ router.route('/').get(UserController.all)
 
 router.route('/:id').get(UserController.getById)
 
-router.route('/:id').patch(auth, UserController.updateByParam)
+router.route('/:id').patch(auth, confirmUser, UserController.updateByParam)
 
-router.route('/:id').put(auth,UserController.updateAll)
+router.route('/:id').put(auth,confirmUser, UserController.updateAll)
 
-router.route('/:id').delete(auth, UserController.delete)
+router.route('/:id').delete(auth,confirmUser, UserController.delete)
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const {Boards} = require('../db/sequelize')
-const confirmUser = require('../middleware/confirm-user.middleware')
+const boards = require('../middleware/boards.middleware')
 
 class BoardsController{
 
@@ -32,7 +32,9 @@ class BoardsController{
 
     async updateSomething(req, res){
         try {
-            //await confirmUser(req,res)
+            //await boards(req,res)
+
+            //res.send("response")
             let response = await Boards.update(req.body,
                 {
                     where: {id: req.params.id},

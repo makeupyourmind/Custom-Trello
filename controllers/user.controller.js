@@ -89,7 +89,7 @@ class UserController{
 
     async updateByParam(req, res){
         try{
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             if(req.body.password != undefined){
                 req.body.password = bcrypt.hashSync(req.body.password, 10);
             }
@@ -107,7 +107,7 @@ class UserController{
 
     async updateAll(req, res){
         try{
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             if(req.body.password != undefined){
                 req.body.password = bcrypt.hashSync(req.body.password, 10);
             }
@@ -126,7 +126,7 @@ class UserController{
     async delete(req, res){
 
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await User.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")
