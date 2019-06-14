@@ -35,7 +35,7 @@ class ColumnsController{
     
     async updateSomething(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Columns.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -49,7 +49,7 @@ class ColumnsController{
 
     async updateAll(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Columns.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -63,7 +63,7 @@ class ColumnsController{
 
     async delete(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Columns.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")

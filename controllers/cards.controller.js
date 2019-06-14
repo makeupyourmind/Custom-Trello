@@ -35,7 +35,7 @@ class CardsController{
     
     async updateSomething(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Cards.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -49,7 +49,7 @@ class CardsController{
 
     async updateAll(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Cards.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -63,7 +63,7 @@ class CardsController{
 
     async delete(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Cards.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")

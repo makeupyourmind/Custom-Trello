@@ -34,7 +34,7 @@ class CommentsController{
     
     async updateSomething(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Comments.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -48,7 +48,7 @@ class CommentsController{
 
     async updateAll(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Comments.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -62,7 +62,7 @@ class CommentsController{
 
     async delete(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Comments.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")

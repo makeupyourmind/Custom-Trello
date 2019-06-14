@@ -32,7 +32,7 @@ class BoardsController{
 
     async updateSomething(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Boards.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -46,7 +46,7 @@ class BoardsController{
 
     async updateAll(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Boards.update(req.body,
                 {
                     where: {id: req.params.id},
@@ -61,7 +61,7 @@ class BoardsController{
 
     async delete(req, res){
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             let response = await Boards.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")
