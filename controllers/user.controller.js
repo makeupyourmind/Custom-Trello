@@ -9,7 +9,7 @@ class UserController{
     async test(req, res){
 
         try {
-            await confirmUser(req,res)
+            //await confirmUser(req,res)
             console.log(req.body)
             res.send(req.body)
         } catch (error) {

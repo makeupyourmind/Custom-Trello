@@ -7,6 +7,7 @@ module.exports = async function(req, res, next){
                 res.sendStatus(401);
             }
             else {
+                console.log(authData.user.id == req.params.id)
                 if(authData.user.id == req.params.id){
                     next()
                     //return true

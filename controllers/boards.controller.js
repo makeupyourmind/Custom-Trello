@@ -32,9 +32,6 @@ class BoardsController{
 
     async updateSomething(req, res){
         try {
-            //await boards(req,res)
-
-            //res.send("response")
             let response = await Boards.update(req.body,
                 {
                     where: {id: req.params.id},
