@@ -1,6 +1,6 @@
-const {Columns} = require('../db/sequelize')
+const {Notifications} = require('../db/sequelize')
 
-class ColumnsController{
+class NotificationsController{
     
     async create(req, res){
         try {
@@ -83,4 +83,4 @@ class ColumnsController{
     }
 }
 
-module.exports = new ColumnsController
+module.exports = new NotificationsController
