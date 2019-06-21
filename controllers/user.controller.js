@@ -2,7 +2,6 @@ const {User} = require('../db/sequelize');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserHelper = require('../heplers/user.helper')
-const confirmUser = require('../middleware/confirm-user.middleware')
 
 class UserController{
 
@@ -24,7 +23,8 @@ class UserController{
                 const user = response;
                 jwt.sign({user}, 'secretkey',  { expiresIn: '3600s'} , (err,token) => {
                     res.json({
-                        token           
+                        token,
+                        id: response.id
                     });              
                 });
             }
@@ -46,7 +46,15 @@ class UserController{
     async getById(req, res){
         try{
            let response = await User.findByPk(req.params.id)
-           res.send(response)
+           res.json({
+               id: response.id,
+               email: response.email,
+               password: response.email,
+               nickname: response.nickname,
+               createdAt: response.createdAt,
+               updatedAt: response.updateAt
+           })
+           //res.send(response)
         }
         catch(e){
             res.status(400).send(e.message)
@@ -55,7 +63,7 @@ class UserController{
 
     async updateByParam(req, res){
         try{
-            //await confirmUser(req,res)
+ 
             if(req.body.password != undefined){
                 req.body.password = bcrypt.hashSync(req.body.password, 10);
             }
@@ -73,7 +81,7 @@ class UserController{
 
     async updateAll(req, res){
         try{
-            //await confirmUser(req,res)
+
             if(req.body.password != undefined){
                 req.body.password = bcrypt.hashSync(req.body.password, 10);
             }
@@ -90,9 +98,8 @@ class UserController{
     }
 
     async delete(req, res){
-
         try {
-            //await confirmUser(req,res)
+
             let response = await User.findByPk(req.params.id)
             await response.destroy()
             res.status(200).send("okay")

@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
       default: []
     },
     columnId: DataTypes.STRING,
-    order: DataTypes.STRING
+    order: DataTypes.STRING,
+    description: DataTypes.STRING
   }, {});
   cards.associate = function(models) {
     // associations can be defined here

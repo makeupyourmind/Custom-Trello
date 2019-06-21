@@ -10,10 +10,10 @@ router.route('/').get(BoardsController.getAll)
 
 router.route('/:id').get(BoardsController.getById)
 
-router.route('/:id').patch(auth, boardsVerify, BoardsController.updateSomething)
+router.route('/:id').patch(auth, BoardsController.updateSomething)
 
-router.route('/:id').put(auth,boardsVerify, BoardsController.updateAll)
+router.route('/:id').put(auth, BoardsController.updateAll)
 
-router.route('/:id').delete(auth, boardsVerify, BoardsController.delete)
+router.route('/:id').delete(auth, BoardsController.delete)
 
 module.exports = router;

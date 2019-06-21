@@ -12,7 +12,7 @@ router.route('/:id').get(ColumnsController.getById)
 
 router.route('/:id').patch(auth,columnsVerify, ColumnsController.updateSomething)
 
-router.route('/:id').patch(auth,columnsVerify, ColumnsController.updateAll)
+router.route('/:id').put(auth,columnsVerify, ColumnsController.updateAll)
 
 router.route('/:id').delete(auth,columnsVerify, ColumnsController.delete)
 
