@@ -2,13 +2,13 @@
 module.exports = (sequelize, DataTypes) => {
   const cards = sequelize.define('cards', {
     name: DataTypes.STRING,
-    authorId: DataTypes.STRING,
+    authorId: DataTypes.INTEGER,
     members: {
-      type : DataTypes.ARRAY(DataTypes.STRING),
+      type : DataTypes.ARRAY(DataTypes.INTEGER),
       default: []
     },
-    columnId: DataTypes.STRING,
-    order: DataTypes.STRING,
+    columnId: DataTypes.INTEGER,
+    order: DataTypes.INTEGER,
     description: DataTypes.STRING
   }, {});
   cards.associate = function(models) {

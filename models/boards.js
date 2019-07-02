@@ -2,9 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   const boards = sequelize.define('boards', {
     name: DataTypes.STRING,
-    authorId: DataTypes.STRING,
+    authorId: DataTypes.INTEGER,
     members: {
-      type : DataTypes.ARRAY(DataTypes.STRING),
+      type : DataTypes.ARRAY(DataTypes.INTEGER),
       default: []
     }
   }, {});

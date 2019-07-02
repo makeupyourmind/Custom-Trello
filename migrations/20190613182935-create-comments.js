@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       authorId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       cardId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

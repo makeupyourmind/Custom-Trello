@@ -12,16 +12,16 @@ module.exports = {
         type: Sequelize.STRING
       },
       authorId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       members: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       columnId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       order: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       description: {
         type : Sequelize.STRING

@@ -3,14 +3,14 @@ module.exports = (sequelize, DataTypes) => {
   const notifications = sequelize.define('notifications', {
     name: DataTypes.STRING,
     text: DataTypes.STRING,
-    authorId: DataTypes.STRING,
+    authorId: DataTypes.INTEGER,
     recipients: {
-      type : DataTypes.ARRAY(DataTypes.STRING),
+      type : DataTypes.ARRAY(DataTypes.INTEGER),
       default: []
     },
-    cardId: DataTypes.STRING,
-    columnId: DataTypes.STRING,
-    boardId: DataTypes.STRING,
+    cardId: DataTypes.INTEGER,
+    columnId: DataTypes.INTEGER,
+    boardId: DataTypes.INTEGER,
     type: DataTypes.STRING
   }, {});
   notifications.associate = function(models) {

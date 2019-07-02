@@ -24,7 +24,9 @@ class UserController{
                 jwt.sign({user}, 'secretkey',  { expiresIn: '3600s'} , (err,token) => {
                     res.json({
                         token,
-                        id: response.id
+                        id: response.id,
+                        email: response.email,
+                        nickname: response.nickname
                     });              
                 });
             }

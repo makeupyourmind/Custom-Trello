@@ -15,19 +15,19 @@ module.exports = {
         type: Sequelize.STRING
       },
       authorId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       recipients: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
       },
       cardId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       columnId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       boardId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       type: {
         type: Sequelize.STRING

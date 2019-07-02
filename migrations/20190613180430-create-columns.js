@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       authorId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       boardId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       order: {
         type: Sequelize.STRING
